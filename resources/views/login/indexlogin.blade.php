@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ATM Classroom</title>
+    <title>Sistem Manajemen Aktivitas Siswa</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->

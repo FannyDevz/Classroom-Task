@@ -42,10 +42,10 @@
     <table id="user_table_siswa" class="table table-bordered data-table display nowrap" style="width:100%">
       <thead>
         <tr>
+          <th style="text-align: center">NIS</th>
           <th style="text-align: center">Nama</th>
           <th style="text-align: center">Angkatan</th>
-          <th style="text-align: center">Kelas</th>
-          <th style="text-align: center">Username</th>
+          <th style="text-align: center">Jurusan</th>
           <th style="text-align: center">Email</th>
           <th style="text-align: center; width: 100px">Action</th>
         </tr>
@@ -69,7 +69,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label>Username</label>
+          <label>NIS</label>
           <input type="text" class="form-control" value="" id="username">
         </div>
         <div class="form-group">
@@ -81,11 +81,23 @@
           <input type="text" class="form-control" value="" id="nama_lengkap">
         </div>
         <div class="form-group">
-          <label>Kelas</label>
+          <label>Jurusan</label>
           <select class="form-control" id="kelas">
-            <option value="BDP">BDP</option>
-            <option value="UPW">UPW</option>
-            <option value="ATU">ATU</option>
+            <option value="AP 1">AP 1</option>
+            <option value="AP 2">AP 2</option>
+            <option value="JB 1">JB 1</option>
+            <option value="JB 2">JB 2</option>
+            <option value="MM 1">MM 1</option>
+            <option value="MM 2">MM 2</option>
+            <option value="MM 3">MM 3</option>
+            <option value="TGB 1">TGB 1</option>
+            <option value="TGB 2">TGB 2</option>
+            <option value="TKJ 1">TKJ 1</option>
+            <option value="TKJ 2">TKJ 2</option>
+            <option value="TKJ 3">TKJ 3</option>
+            <option value="TKR 1">TKR 1</option>
+            <option value="TKR 2">TKR 2</option>
+            <option value="TPM 1">TPM 1</option>
           </select>
         </div>
         <div class="form-group">
@@ -149,10 +161,10 @@
     var table;
 
     function clearAll() {
+      $('#username').val('');
       $('#nama_lengkap').val('');
       $('#angkatan').val('');
       $('#kelas').val('');
-      $('#username').val('');
       $('#email').val('');
     }
 
@@ -165,7 +177,10 @@
         },
         responsive: true,
         ajax: "{{ route('index-siswa') }}",
-        columns: [{
+        columns: [ {
+            data: 'username',
+            name: 'username'
+          },{
             data: 'full_name',
             name: 'full_name'
           },
@@ -176,10 +191,6 @@
           {
             data: 'kelas',
             name: 'kelas'
-          },
-          {
-            data: 'username',
-            name: 'username'
           },
           {
             data: 'email',

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?= URL::to('/'); ?>/layout/assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="<?= URL::to('/layout_login/images/favicon.ico') ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>ATM Classroom</title>
+	<title>Sistem Manajemen Aktivitas Siswa</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
@@ -95,7 +95,7 @@
     <script src="<?= URL::to('/'); ?>/layout/assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
 	<script type="text/javascript">
-    	
+
         var base_url = {!! json_encode(url('/')) !!}
 
         function showNotif(idnotification) {

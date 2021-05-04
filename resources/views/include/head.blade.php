@@ -17,6 +17,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left"></ul>
       <ul class="nav navbar-nav navbar-right">
+
         <li>
           <a href="<?= URL::to('/profile'); ?>">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp Profile
@@ -24,7 +25,7 @@
         </li>
 
         @if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN)
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <p>
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbspPengaturan
@@ -37,27 +38,27 @@
             @endif
             <li><a href="<?= URL::to('/action-log'); ?>"><span class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp Log Sistem </a></li>
           </ul>
-        </li>
+        </li> -->
         @endif
 
         @if($user->account_type == User::ACCOUNT_TYPE_CREATOR)
-          <li>
+          <!-- <li>
             <a href="<?= URL::to('/notification'); ?>">
               <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> &nbsp Buat Notifikasi</p>
             </a>
-          </li>
+          </li> -->
         @endif
 
         @if($user->account_type == User::ACCOUNT_TYPE_ADMIN)
-          <li>
+          <!-- <li>
             <a href="<?= URL::to('/notification'); ?>">
               <span class="glyphicon glyphicon-bell" aria-hidden="true"></span> &nbsp Buat Notifikasi</p>
             </a>
-          </li>
-          <li class="dropdown">
+          </li> -->
+          <!-- <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Notifikasi
-              <!-- Hitung pesan notifikasi belum terbaca -->
+               Hitung pesan notifikasi belum terbaca
               <?php
                 $data_notif   = UserNotification::where('user_id', $user->id)->orderBy('created_at', 'DESC')->limit(5)->get();
                 $count_notif  = UserNotification::where('user_id', $user->id)->where('status', UserNotification::STATUS_UNREAD)->get()->count();
@@ -75,14 +76,14 @@
                 @endif
               </ul>
             @endif
-          </li>
+          </li> -->
         @endif
 
         @if($user->account_type != User::ACCOUNT_TYPE_CREATOR && $user->account_type != User::ACCOUNT_TYPE_ADMIN)
-          <li class="dropdown">
+          <!-- <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Notifikasi
-              <!-- Hitung pesan notifikasi belum terbaca -->
+               Hitung pesan notifikasi belum terbaca
               <?php
                 $data_notif   = UserNotification::where('user_id', $user->id)->orderBy('created_at', 'DESC')->limit(5)->get();
                 $count_notif  = UserNotification::where('user_id', $user->id)->where('status', UserNotification::STATUS_UNREAD)->get()->count();
@@ -100,7 +101,7 @@
                 @endif
               </ul>
             @endif
-          </li>
+          </li> -->
         @endif
 
         <li>

@@ -43,10 +43,10 @@
     <table id="user_table" class="table table-bordered data-table display nowrap" style="width:100%">
       <thead>
         <tr>
+          <th style="text-align: center">NIP</th>
           <th style="text-align: center;" width="300">Nama</th>
-          <th style="text-align: center">Username</th>
           <th style="text-align: center">Email</th>
-          <th style="text-align: center">Account Type</th>
+          <!-- <th style="text-align: center">Account Type</th> -->
           <th style="text-align: center; width: 100px">Action</th>
         </tr>
       </thead>
@@ -69,23 +69,24 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label>Username</label>
+          <label>NIP</label>
           <input type="text" class="form-control" value="" id="username">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="text" class="form-control" value="" id="email">
         </div>
         <div class="form-group">
           <label>Nama</label>
           <input type="text" class="form-control" value="" id="nama_lengkap">
         </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" value="" id="email">
+        </div>
         <div class="form-group">
           <label for="sel1">Tipe Akun</label>
           <select class="form-control" id="tipe_akun">
-            <option value="{{ User::ACCOUNT_TYPE_ADMIN }}">Administrator</option>
+            <option value="{{ User::ACCOUNT_TYPE_ADMIN }}">Admin</option>
             <option value="{{ User::ACCOUNT_TYPE_TEACHER }}">Guru</option>
-            <option value="{{ User::ACCOUNT_TYPE_SISWA }}">Siswa</option>
+            <!-- <option value="{{ User::ACCOUNT_TYPE_SISWA }}">Siswa</option> -->
           </select>
         </div>
       </div>
@@ -136,7 +137,7 @@
 
     function clearAll() {
       $('#username').val('');
-      $('#tipe_akun').val('');
+    //   $('#tipe_akun').val('');
       $('#email').val('');
       $('#nama_lengkap').val('');
     }
@@ -150,21 +151,17 @@
         },
         responsive: true,
         ajax: "{{ route('index-user') }}",
-        columns: [{
+        columns: [
+          {
+            data: 'username',
+            name: 'username'
+          },{
             data: 'full_name',
             name: 'full_name'
           },
           {
-            data: 'username',
-            name: 'username'
-          },
-          {
             data: 'email',
             name: 'email'
-          },
-          {
-            data: 'account_type',
-            name: 'account_type'
           },
           {
             data: 'action',

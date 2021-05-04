@@ -27,15 +27,15 @@
         @slot('message')
             {{ session('alert_error') }}
         @endslot
-  @endcomponent 
+  @endcomponent
 @endif
 
 @endsection
 
 @section('content')
 
-  <?php 
-    use Yajra\Datatables\Datatables; 
+  <?php
+    use Yajra\Datatables\Datatables;
     use App\Model\User\User;
 
     // get user auth
@@ -158,7 +158,7 @@
           <div class="form-group">
             <label>Kelas</label>
             <input type="text" class="form-control" value="" name="class_name" id="class_name">
-          </div> 
+          </div>
           @if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN)
             <div class="form-group">
               <label>Guru</label>
@@ -256,7 +256,7 @@
             type:'POST',
             url: base_url + '/student-class/update',
             data:{
-                  idclass:idclass, 
+                  idclass:idclass,
                   "_token": "{{ csrf_token() }}",
                   angkatan : angkatan,
                   kelas : kelas,
@@ -270,7 +270,7 @@
                 $("#detailModal .close").click();
                 setTimeout(function(){
                   location.reload();
-                }, 1000); 
+                }, 1000);
               } else {
                 swal(data.message, { button:false, icon: "error", timer: 1000});
               }
@@ -281,7 +281,7 @@
               console.log(data);
             }
           });
-          
+
       })
     }
 
@@ -333,7 +333,7 @@
     function hapus(idclass) {
       swal({
           title: "Hapus Kelas",
-          text: 'Semua data yang terdapat didalam Kelas ini akan dihapus secara permanen', 
+          text: 'Semua data yang terdapat didalam Kelas ini akan dihapus secara permanen',
           icon: "warning",
           buttons: true,
           dangerMode: true,
@@ -344,7 +344,7 @@
             type:'POST',
             url: base_url + '/student-class/delete',
             data:{
-              idclass:idclass, 
+              idclass:idclass,
               "_token": "{{ csrf_token() }}",
             },
             success:function(data) {
@@ -356,12 +356,12 @@
               table.ajax.reload();
               setTimeout(function(){
                 location.reload();
-              }, 1000); 
+              }, 1000);
             },
             error: function(error) {
               swal('Terjadi kegagalan sistem', { button:false, icon: "error", timer: 1000});
             }
-          });      
+          });
         }
       });
     }

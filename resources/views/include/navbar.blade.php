@@ -1,5 +1,5 @@
-<?php 
-    use Yajra\Datatables\Datatables; 
+<?php
+    use Yajra\Datatables\Datatables;
     use App\Model\User\User;
 
     // get user auth
@@ -8,7 +8,7 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <img src="<?= URL::to('/layout_login/images/logo fix.png'); ?>" style="width:40px;height:40px;" class="center">
+        <img src="<?= URL::to('/layout_login/images/logo fix.png'); ?>" style="width:100px;height:100px;" class="center">
     </div>
     <ul class="nav">
         <li class="<?= $active == 'home' ? 'active' : '' ?>">
@@ -19,18 +19,19 @@
         </li>
 
         @if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN)
-            <li class="<?= $active == 'user' ? 'active' : '' ?>">
-                <a href="<?= URL::to('/user'); ?>">
-                    <i class="pe-7s-user"></i>
-                    <p>Pengguna</p>
-                </a>
-            </li>
             <li class="<?= $active == 'student_class' ? 'active' : '' ?>">
                 <a href="<?= URL::to('/student-class'); ?>">
                     <i class="pe-7s-study"></i>
                     <p>Kelas</p>
                 </a>
             </li>
+            <li class="<?= $active == 'user' ? 'active' : '' ?>">
+                <a href="<?= URL::to('/user'); ?>">
+                    <i class="pe-7s-user"></i>
+                    <p>Guru</p>
+                </a>
+            </li>
+
             <li class="<?= $active == 'siswa' ? 'active' : '' ?>">
                 <a href="<?= URL::to('/siswa'); ?>">
                     <i class="pe-7s-id"></i>
@@ -61,7 +62,7 @@
 
 <style type="text/css">
 
-.center 
+.center
 {
     display: block;
     margin-left: auto;

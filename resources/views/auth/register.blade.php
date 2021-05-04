@@ -10,7 +10,7 @@
                 @csrf
 
                 <span class="register100-form-title">
-                    Ouroom Register
+                    Register
                 </span>
                 <div class="wrap-input100">
                     <input class="inputRegister" type="text" name="full_name" placeholder="Nama Lengkap" id="full_name" value="{{ old('full_name') }}">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="wrap-input100">
                     <select class="form-control" name="jenis_kelamin" style="background-color: #e6e6e6; padding: 0 20px; border-radius: 0px; height: 48px">
-                        <option selected="true" disabled="disabled">Jenis Kelamin</option> 
+                        <option selected="true" disabled="disabled">Jenis Kelamin</option>
                         <option value="laki-laki">Laki-laki</option>
                         <option value="perempuan">Perempuan</option>
                     </select>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="wrap-input100">
                     <select class="form-control" name="kelas" style="background-color: #e6e6e6; padding: 0 20px; border-radius: 0px; height: 48px">
-                        <option selected="true" disabled="disabled">Kelas</option> 
+                        <option selected="true" disabled="disabled">Kelas</option>
                         <option value="BDP">BDP</option>
                         <option value="UPW">UPW</option>
                         <option value="ATU">ATU</option>

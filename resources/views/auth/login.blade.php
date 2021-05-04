@@ -19,7 +19,7 @@
                 @csrf
 
                 <span class="login100-form-title">
-                    Ouroom
+                    SMK Bhakti Mulia</br>Pare
                 </span>
                 <div class="wrap-input100" data-validate="Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="username" placeholder="Username" id="username">
@@ -40,18 +40,19 @@
                         Login
                     </button>
                 </div>
-                <div class="container-login100-form-btn">
-                    <a href="{{ route('register') }}">
-                        Register
-                    </a>
-                </div>
+
                 <div class="text-center p-t-12">
                     <span class="txt1">
-                        Lupa
+                        Gunakan Username dan Password yang telah diberikan
                     </span>
-                    <a class="txt2" href="{{ route('show-reset') }}">
-                        Password ?
-                    </a>
+                    <!-- <a class="txt2" href="{{ route('show-reset') }}"> -->
+
+                    <!-- </a> -->
+                </div>
+                <div class="container-login100-form-btn">
+                    <!-- <a href="{{ route('register') }}"> -->
+                        <!-- Hubungi Admin Jika Lupa -->
+                    <!-- </a> -->
                 </div>
                 <div class="text-center p-t-12">
                     @if($errors->any())

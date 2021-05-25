@@ -28,6 +28,7 @@ class FeedController extends Controller
                 ->join('tbl_class', 'tbl_feed.class_id', '=', 'tbl_class.id')
                 ->where('tbl_class.id', $request->id_kelas)
                 ->select('tbl_feed.*')
+                ->orderBy('id', 'DESC')
                 ->get();
             $nama_kelas = DB::table('tbl_class')
                 ->where('id', $id_kelas)
@@ -49,12 +50,14 @@ class FeedController extends Controller
                     ->join('tbl_class', 'tbl_feed.class_id', '=', 'tbl_class.id')
                     ->where('tbl_class.id', $request->id_kelas)
                     ->select('tbl_feed.*')
+                    ->orderBy('id', 'DESC')
                     ->get();
                 $nama_kelas = DB::table('tbl_class')
                     ->where('id', $id_kelas)
                     ->value('class_name');
                 $data_kelas = DB::table('tbl_class')
                     ->where('id', $id_kelas)
+                     ->orderBy('id', 'DESC')
                     ->get();
                 return view('student_class.list', ['active' => 'student_class', 'id_kelas' => $id_kelas, 'nama_kelas' => $nama_kelas, 'data_kelas' => $data_kelas, 'data_feed' => $data_feed]);
             } else {
@@ -74,6 +77,7 @@ class FeedController extends Controller
                         ->join('tbl_class', 'tbl_feed.class_id', '=', 'tbl_class.id')
                         ->where('tbl_class.id', $request->id_kelas)
                         ->select('tbl_feed.*')
+                        ->orderBy('id', 'DESC')
                         ->get();
                     $nama_kelas = DB::table('tbl_class')
                         ->where('id', $id_kelas)

@@ -26,13 +26,13 @@
                 @slot('message')
                     {{ session('alert_error') }}
                 @endslot
-        @endcomponent 
+        @endcomponent
     @endif
 @endsection
 
 @section('content')
-	<?php 
-		use Yajra\Datatables\Datatables; 
+	<?php
+		use Yajra\Datatables\Datatables;
         use App\Model\User\User;
         use Carbon\Carbon;
 
@@ -54,7 +54,7 @@
                 <input type="hidden" name="id_kelas" value="{{ $id_kelas }}">
                 <label>Kategori</label>
                 <select class="form-control" name="kategori">
-                    <option value="Artikel">Artikel</option>
+                    <option value="Materi">Materi</option>
                     <option value="Tugas">Tugas</option>
                     <option value="Ujian">Ujian</option>
                 </select>
@@ -93,7 +93,7 @@
                 <input type="hidden" name="nama_kelas" value="{{$nama_kelas}}">
                 <input type="hidden" name="nama_feed" value="{{$f->judul}}">
                 <div class="top-attribute">
-                    @if($f->kategori == 'Artikel')
+                    @if($f->kategori == 'Materi')
                         <div class="ui green ribbon huge label">{{$f->kategori}}</div>
                     @endif
                     @if($f->kategori == 'Tugas')
@@ -111,14 +111,19 @@
                 </div>
                 @if($user->account_type == User::ACCOUNT_TYPE_SISWA)
                     <br>
+                    @if($f->kategori == 'Materi')
+
+                    @endif
+                    @if($f->kategori != 'Materi')
                     <span class="judul" style="font-weight:bold">{{ $nilai }}/100</span>
+                    @endif
                 @endif
                 <pre class="detail-section2 padding-rl0">{{ $f->detail }}</pre>
                 @if($f->file != null)
                     <div class="ui blue segment">
                         <h5>
                             <a href="{{ url($nama_kelas.'/'.$f->judul.'/'.$f->file) }}" target="_blank">
-                                <img height"80" width="80" src="{{ asset('asset/file_thumb.png') }}"> 
+                                <img height"80" width="80" src="{{ asset('asset/file_thumb.png') }}">
                                     <span class="file-name"> {{ $f->file }} </span>
                                 </img>
                             </a>
@@ -126,6 +131,11 @@
                     </div>
                 @endif
                 @if($user->account_type == User::ACCOUNT_TYPE_SISWA && $tugas == null)
+                @if($f->kategori == 'Materi')
+
+                @endif
+                @if($f->kategori != 'Materi')
+
                     <hr style="border-top: 1px solid #c6c6c6">
                     <label>Upload File</label>
                     <div class="ui segments sfile">
@@ -134,12 +144,17 @@
                     <div class="ui bottom attached huge buttons">
                         <button type="submit" class="ui button markbtn" id="tugas" value="Belum Selesai">Tandai Selesai</button>
                     </div>
+
+                    @endif
                 @endif
             </div>
         </form>
     @endforeach
     </fieldset>
     @if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN || $user->account_type == User::ACCOUNT_TYPE_TEACHER)
+    @if($f->kategori == 'Materi')
+    @endif
+    @if($f->kategori != 'Materi')
         <hr>
         <div class="table-responsive">
             <table id="customTable" class="table table-striped table-bordered" style="width:100%">
@@ -167,6 +182,8 @@
                 </tbody>
             </table>
         </div>
+
+    @endif
     @endif
 @endsection
 

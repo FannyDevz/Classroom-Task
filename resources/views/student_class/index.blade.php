@@ -182,9 +182,21 @@
           <div class="form-group">
             <label>Kelas</label>
             <select id="kelas" class="form-control" name="kelas">
-              <option value="Pemasaran">Pemasaran</option>
-              <option value="Pariwisata">Pariwisata</option>
-              <option value="Peternakan">Peternakan</option>
+                <option value="AP 1">AP 1</option>
+                <option value="AP 2">AP 2</option>
+                <option value="JB 1">JB 1</option>
+                <option value="JB 2">JB 2</option>
+                <option value="MM 1">MM 1</option>
+                <option value="MM 2">MM 2</option>
+                <option value="MM 3">MM 3</option>
+                <option value="TGB 1">TGB 1</option>
+                <option value="TGB 2">TGB 2</option>
+                <option value="TKJ 1">TKJ 1</option>
+                <option value="TKJ 2">TKJ 2</option>
+                <option value="TKJ 3">TKJ 3</option>
+                <option value="TKR 1">TKR 1</option>
+                <option value="TKR 2">TKR 2</option>
+                <option value="TPM 1">TPM 1</option>
             </select>
           </div>
           <div class="form-group">

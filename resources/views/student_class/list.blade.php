@@ -26,13 +26,13 @@
                 @slot('message')
                     {{ session('alert_error') }}
                 @endslot
-        @endcomponent 
+        @endcomponent
     @endif
 @endsection
 
 @section('content')
-	<?php 
-		use Yajra\Datatables\Datatables; 
+	<?php
+		use Yajra\Datatables\Datatables;
 		use App\Model\User\User;
 		use Carbon\Carbon;
 
@@ -84,8 +84,8 @@
 
 					<label>Kategori</label>
 					<select class="form-control" name="kategori">
-						<option selected="true" disabled="disabled">Pilih Kategori</option> 
-						<option value="Artikel">Artikel</option>
+						<option selected="true" disabled="disabled">Pilih Kategori</option>
+						<option value="Materi">Materi</option>
 						<option value="Tugas">Tugas</option>
 						<option value="Ujian">Ujian</option>
 					</select>
@@ -114,7 +114,7 @@
 		@foreach ($data_feed as $df)
 		<div id="customSegments" class="ui raised segment">
 			<div class="top-attribute">
-				@if($df->kategori == 'Artikel')
+				@if($df->kategori == 'Materi')
 					<a class="ui green ribbon huge label">{{$df->kategori}}</a>
 				@endif
 				@if($df->kategori == 'Tugas')

@@ -63,15 +63,22 @@ $router->group(['prefix' => 'student-class'], function () use ($router) {
 
 	// Class Feed
 	$router->get('/{id_kelas}', ['as'=>'list-student-class','uses' => 'FeedController@showClass']);
+
 	$router->post('/{id_kelas}', ['as'=>'keluar-class','uses' => 'FeedController@keluarClass']);
 	$router->get('/{id_kelas}/rekap-tugas', ['as'=>'rekap-tugas','uses' => 'FeedController@rekapTugasClass']);
-	$router->post('/{id_kelas}/upload',  ['as'=>'upload-feed','uses' => 'FeedController@uploadFeed']);
+
+    $router->get('/{id_kelas}/rekap-tugas/pdf', ['as'=>'rekap-tugas-pdf','uses' => 'FeedController@rekapTugasSiswaPDF']);
+
+    $router->post('/{id_kelas}/upload',  ['as'=>'upload-feed','uses' => 'FeedController@uploadFeed']);
 	$router->post('/{id_kelas}/upload-tugas',  ['as'=>'upload-tugas','uses' => 'FeedController@uploadTugas']);
 	$router->post('/{id_kelas}/delete-feed',  ['as'=>'delete-feed','uses' => 'FeedController@deleteFeed']);
 	$router->get('/{id_kelas}/class-data',  ['as'=>'class-data','uses' => 'FeedController@showClassData']);
 	$router->get('/{id_kelas}/siswa-class',  ['as'=>'siswa-class','uses' => 'FeedController@showSiswaClass']);
 	$router->get('/{id_kelas}/siswa-class/{siswa_id}', ['as'=>'tugas-siswa','uses' => 'FeedController@rekapTugasSiswa']);
-	$router->post('/{id_kelas}/delete-siswa',  ['as'=>'delete-siswa','uses' => 'FeedController@deleteSiswaClass']);
+
+    $router->get('/{id_kelas}/siswa-class/{siswa_id}/pdf', ['as'=>'rekap-siswa-pdf','uses' => 'FeedController@rekapTugasSiswasPdf']);
+
+    $router->post('/{id_kelas}/delete-siswa',  ['as'=>'delete-siswa','uses' => 'FeedController@deleteSiswaClass']);
 	$router->get('/{id_kelas}/{id_feed}',  ['as'=>'class-feed','uses' => 'FeedController@showFeed']);
 	$router->post('/{id_kelas}/{id_feed}',  ['as'=>'update-feed','uses' => 'FeedController@updateFeed']);
 	$router->get('/{id_kelas}/{id_feed}/{siswa_id}',  ['as'=>'show-tugas','uses' => 'FeedController@showTugas']);

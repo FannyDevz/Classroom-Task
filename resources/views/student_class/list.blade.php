@@ -41,7 +41,7 @@
 	?>
 
 	@foreach($data_kelas as $dk)
-		@if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN || $user->account_type == User::ACCOUNT_TYPE_TEACHER)
+		@if($user->account_type == User::ACCOUNT_TYPE_TEACHER)
 			<a class="ui big inverted primary button btn-edit" href="{{ route('siswa-class', ['id_kelas'=>$id_kelas]) }}">
 				SISWA KELAS
 			</a>
@@ -63,11 +63,12 @@
 					<a href="{{ route('rekap-tugas', ['id_kelas'=>$id_kelas]) }}" class="ui big inverted primary button btn-edit">
 						REKAP TUGAS
 					</a>
+
 				@endif
 			</h1>
 	@endforeach
 	<hr style="border-top: 1px solid #c6c6c6">
-	@if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN || $user->account_type == User::ACCOUNT_TYPE_TEACHER)
+	@if( $user->account_type == User::ACCOUNT_TYPE_TEACHER)
 		<form method="POST" action="{{ route('upload-feed', ['id_kelas'=>$id_kelas]) }}" class="upload-container" enctype="multipart/form-data">
 
 			@csrf
@@ -134,9 +135,66 @@
 			</a>
 		</div>
 		@endforeach
+@if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN)
+    <div class="table-responsive">
+        <table id="siswa_table" class="table table-bordered data-table display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="text-align: center" width="400px">Nama</th>
+                    <th style="text-align: center">Angkatan</th>
+                    <th style="text-align: center">Kelas</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+@endif
 @endsection
 
 @push('scripts')
+
+    <link rel="stylesheet" type="text/css" href="<?= URL::to('/'); ?>/layout/assets/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="<?= URL::to('/'); ?>/layout/assets/js/jquery.dataTables.js" defer></script>
+    <script type="text/javascript">
+        var iduser;
+        var table;
+
+        function clearAll() {
+            $('#nama').val('');
+            $('#angkatan').val('');
+            $('#kelas').val('');
+        }
+
+        $(function() {
+            table = $('#siswa_table').DataTable({
+                processing: true,
+                serverSide: true,
+                rowReorder: {
+                    selector: 'td:nth-child(2)'
+                },
+                responsive: true,
+                ajax: "{{ route('siswa-class', ['id_kelas'=>$id_kelas]) }}",
+                columns: [{
+                    data: 'full_name',
+                    name: 'full_name'
+                },
+                {
+                    data: 'angkatan',
+                    name: 'angkatan'
+                },
+                {
+                    data: 'kelas',
+                    name: 'kelas'
+                },
+
+                ]
+            });
+        });
+
+    </script>
+
 <script type="text/javascript">
 	function copyToken(elementID) {
 		let element = document.getElementById("token");

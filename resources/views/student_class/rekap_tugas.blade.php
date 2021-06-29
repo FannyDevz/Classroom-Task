@@ -27,14 +27,14 @@
         @slot('message')
             {{ session('alert_error') }}
         @endslot
-    @endcomponent 
+    @endcomponent
 @endif
 
 @endsection
 
 @section('content')
-    <?php 
-		use Yajra\Datatables\Datatables; 
+    <?php
+		use Yajra\Datatables\Datatables;
         use App\Model\User\User;
         use App\Model\StudentClass\Feed;
 		use Carbon\Carbon;
@@ -43,7 +43,11 @@
 		$user = Auth::user();
     ?>
 
-    <div class="table-responsive">
+    <div style="padding-bottom: 20px">
+      <a  href="{{ route('rekap-tugas-pdf', ['id_kelas'=>$id_kelas]) }}" type="button" class="ui huge inverted primary button"> CETAK PDF </a>
+    </div>
+
+      <div class="table-responsive">
         <table id="rekap_table" class="table table-bordered data-table display nowrap" style="width:100%">
             <thead>
                 <tr>

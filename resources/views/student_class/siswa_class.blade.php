@@ -27,7 +27,7 @@
         @slot('message')
             {{ session('alert_error') }}
         @endslot
-    @endcomponent 
+    @endcomponent
 @endif
 
 @endsection

@@ -14,6 +14,7 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use DB;
+use PDF;
 
 class FeedController extends Controller
 {
@@ -95,15 +96,6 @@ class FeedController extends Controller
         }
     }
 
-    public function keluarClass(Request $request)
-    {
-        $id_user = Auth::id();
-        $id_kelas = $request->id;
-        $user = User::findOrFail($id_user);
-        $user->hasClass()->detach($id_kelas);
-        $this->systemLog(false, 'Berhasil keluar kelas');
-        return redirect()->back()->with('alert_success', 'Berhasil keluar kelas.');
-    }
 
     public function rekapTugasSiswa(Request $request)
     {
@@ -113,7 +105,31 @@ class FeedController extends Controller
             ->where('siswa_id', $id_siswa)
             ->where('class_id', $id_kelas)
             ->get();
-        return view('student_class.tugas_siswa', ['active' => 'student_class', 'data_tugas' => $data_tugas]);
+        return view('student_class.tugas_siswa', ['active' => 'student_class','id_siswa' => $id_siswa,'id_kelas' => $id_kelas, 'data_tugas' => $data_tugas]);
+    }
+
+    public function rekapTugasSiswasPdf(Request $request)
+    {
+        $id_kelas = $request->id_kelas;
+        $id_siswa = $request->siswa_id;
+        $filename =  DB::table('tbl_user')
+            ->where('id', $id_siswa)
+            ->get();
+
+        foreach($filename as $fn){
+
+            $nama = $fn->full_name;
+        }
+
+        $data_tugas = DB::table('tbl_tugas')
+            ->where('siswa_id', $id_siswa)
+            ->where('class_id', $id_kelas)
+            ->get();
+        $pdf = PDF::loadView('student_class.pdf', ['id_siswa' => $id_siswa,'filename' => $filename,'id_kelas' => $id_kelas, 'data_tugas' => $data_tugas]);
+        // If you want to store the generated pdf to the server then you can use the store function
+        $pdf->save(storage_path().'_filename.pdf');
+        // Finally, you can download the file using download function
+        return $pdf->download("REKAP NILAI ".$nama.".pdf");
     }
 
     public function rekapTugasClass(Request $request)
@@ -124,8 +140,28 @@ class FeedController extends Controller
             ->where('siswa_id', $id_user)
             ->where('class_id', $id_kelas)
             ->get();
-        return view('student_class.rekap_tugas', ['active' => 'student_class', 'data_tugas' => $data_tugas]);
+        return view('student_class.rekap_tugas', ['active' => 'student_class','id_kelas' => $id_kelas, 'id_user' => $id_user, 'data_tugas' => $data_tugas]);
     }
+
+    public function rekapTugasSiswaPDF(Request $request)
+    {
+        $id_user = Auth::id();
+        $id_kelas = $request->id_kelas;
+        $filename =  DB::table('tbl_user')
+        ->where('id', $id_user)
+        ->get();
+        $data_tugas = DB::table('tbl_tugas')
+            ->where('siswa_id', $id_user)
+            ->where('class_id', $id_kelas)
+            ->get();
+        // Send data to the view using loadView function of PDF facade
+        $pdf = PDF::loadView('student_class.pdf', ['filename' => $filename, 'data_tugas' => $data_tugas]);
+        // If you want to store the generated pdf to the server then you can use the store function
+        $pdf->save(storage_path().'_filename.pdf');
+        // Finally, you can download the file using download function
+        return $pdf->download('REKAP NILAI.pdf');
+    }
+
 
     public function showFeed(Request $request)
     {
@@ -212,6 +248,17 @@ class FeedController extends Controller
             $this->systemLog(false, 'Berhasil menghapus user');
             return $this->getResponse(true, 200, '', 'User berhasil dihapus');
         }
+    }
+
+
+    public function keluarClass(Request $request)
+    {
+        $id_user = Auth::id();
+        $id_kelas = $request->id_kelas;
+        $user = User::findOrFail($id_user);
+        $user->hasClass()->detach($id_kelas);
+        $this->systemLog(false, 'Berhasil keluar kelas');
+        return redirect()->back()->with('alert_success', 'Berhasil keluar kelas.');
     }
 
     public function uploadFeed(Request $request)

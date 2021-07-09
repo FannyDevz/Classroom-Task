@@ -13,12 +13,16 @@
 // get user auth
 $user = Auth::user();
 ?>
-<h1 style="text-align: center">Rekap Tugas</h1>
-
 @foreach($filename as $fn)
-<h4 style="text-align: center">{{$fn->full_name}}</h4>
+<p>
+NAMA        : {{$fn->full_name}}<br>
+KELAS       : {{$fn->kelas}}<br>
+ANGKATAN    : {{$fn->angkatan}}<br>
+</p>
 @endforeach
 <br>
+
+<h1 style="text-align: center">Rekap Tugas</h1><br>
 <div class="table-responsive">
         <table class="table table-bordered data-table display nowrap" style="width:100%">
     <thead>

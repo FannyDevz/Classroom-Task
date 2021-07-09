@@ -111,6 +111,7 @@
 	@endif
 	<fieldset>
 
+@if( $user->account_type == User::ACCOUNT_TYPE_SISWA)
 	<legend>{{ $nama_kelas }}</legend>
 		@foreach ($data_feed as $df)
 		<div id="customSegments" class="ui raised segment">
@@ -135,6 +136,9 @@
 			</a>
 		</div>
 		@endforeach
+
+
+		@endif
 @if($user->account_type == User::ACCOUNT_TYPE_CREATOR || $user->account_type == User::ACCOUNT_TYPE_ADMIN)
     <div class="table-responsive">
         <table id="siswa_table" class="table table-bordered data-table display nowrap" style="width:100%">

@@ -115,12 +115,9 @@ class FeedController extends Controller
         $filename =  DB::table('tbl_user')
             ->where('id', $id_siswa)
             ->get();
-
         foreach($filename as $fn){
-
             $nama = $fn->full_name;
         }
-
         $data_tugas = DB::table('tbl_tugas')
             ->where('siswa_id', $id_siswa)
             ->where('class_id', $id_kelas)
